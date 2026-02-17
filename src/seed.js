@@ -16,8 +16,8 @@ const seed = async () => {
     organizationId: 2
   });
 
-  console.log("✅ User created: admin@test.com / password123");
-  console.log("✅ User created: user@test.com / password12345");
+  console.log("✅ User created: admin@test.com / password123. Organisation ID: 1");
+  console.log("✅ User created: user@test.com / password12345 Organisation ID: 2");
   
 
   // Create Dummy Tickets
