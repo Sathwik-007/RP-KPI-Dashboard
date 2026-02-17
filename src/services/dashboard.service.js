@@ -18,6 +18,7 @@ export const getDashboardStats = async (filters, userOrgId) => {
     };
   }
 
+  // Execute all queries in parallel for better performance
   const [
     totalTickets,
     closedTickets,
@@ -36,6 +37,7 @@ export const getDashboardStats = async (filters, userOrgId) => {
         status: { [Op.ne]: "Done" },
       },
     }),
+    // we are grouping tickets by status. This is equivalent to GROUPBY(status) and then return the count in SQL
     Ticket.findAll({
       attributes: [
         "status",
@@ -45,10 +47,11 @@ export const getDashboardStats = async (filters, userOrgId) => {
       group: ["status"],
       raw: true,
     }),
+    // here with priority using aggregate function. This is equivalent to GROUPBY(priority) adn return count in SQL
     Ticket.findAll({
       attributes: [
         "priority",
-        [Sequelize.fn("COUNT", Sequelize.col("id")), "count"],
+        [Sequelize.fn("COUNT", Sequelize.col("id")), "count"], // COUNT(*) AS "count" in json;
       ],
       where: whereClause,
       group: ["priority"],

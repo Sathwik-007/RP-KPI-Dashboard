@@ -3,7 +3,7 @@ import db from "./models/index.js";
 const seed = async () => {
   await db.sequelize.sync();
 
-  // Create a User (so you can login)
+  // Create test Users
   await db.User.create({
     email: "admin@test.com",
     password: "password123",
@@ -17,7 +17,7 @@ const seed = async () => {
   });
 
   console.log("✅ User created: admin@test.com / password123. Organisation ID: 1");
-  console.log("✅ User created: user@test.com / password12345 Organisation ID: 2");
+  console.log("✅ User created: user@test.com / password12345. Organisation ID: 2");
   
 
   // Create Dummy Tickets
