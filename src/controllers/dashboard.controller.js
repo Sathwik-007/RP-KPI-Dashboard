@@ -11,6 +11,8 @@ export const getDashboardData = async (req, res) => {
     );
 
     res.status(200).json({
+      status: 200,
+      message: "Data retrieved successfully", 
       success: true,
       data: data,
     });

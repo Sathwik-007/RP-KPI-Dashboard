@@ -32,7 +32,7 @@ export const login = async (req, res) => {
 export const register = async (req, res) => {
   try {
     const user = await User.create(req.body);
-    res.status(201).json({ message: "User created!", user });
+    res.status(201).json({ message: "User created!", userId: user.id, email: user.email, organizationId: user.organizationId });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
